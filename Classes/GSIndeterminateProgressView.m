@@ -16,17 +16,29 @@ const CGFloat CHUNK_WIDTH = 40.0f;
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.clipsToBounds = YES;
-
-        self.trackTintColor = [UIColor whiteColor];
-        self.progressTintColor = [UIColor blueColor];
-
-        self.hidesWhenStopped = YES;
-        self.hidden = YES;
+    if (self = [super initWithFrame:frame]) {
+        [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    self.clipsToBounds = YES;
+    
+    self.trackTintColor = [UIColor whiteColor];
+    self.progressTintColor = [UIColor blueColor];
+    
+    self.hidesWhenStopped = YES;
+    self.hidden = YES;
 }
 
 - (void)setTrackTintColor:(UIColor *)trackTintColor
