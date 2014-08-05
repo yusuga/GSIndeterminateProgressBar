@@ -10,6 +10,12 @@
 
 const CGFloat CHUNK_WIDTH = 40.0f;
 
+@interface GSIndeterminateProgressView ()
+
+@property (nonatomic, readwrite) BOOL isAnimating;
+
+@end
+
 @implementation GSIndeterminateProgressView
 
 @synthesize isAnimating = _isAnimating;
@@ -100,8 +106,11 @@ const CGFloat CHUNK_WIDTH = 40.0f;
         CGRect chuckFrame = chunk.frame;
         chuckFrame.origin.x = -CHUNK_WIDTH;
         chunk.frame = chuckFrame;
-        if (finished)
+        if (finished) {
             [self animateProgressChunk:chunk delay:1.4];
+        } else {
+            [self stopAnimating];
+        }    
     }];
 }
 
